@@ -5,14 +5,20 @@ html, header, body {
 }
 
 /* Navbar Styling */
-.nav-container {
+.navBG {
+    background: rgb(25, 25, 25);
+}
+
+.box {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     overflow: hidden;
-    background: rgb(25, 25, 25);
+    /* background: rgb(25, 25, 25); */
     height: 80px;
     padding: 0 30px;
+    max-width: 750px;
+    margin: auto;
 }
 
 .title {
@@ -45,9 +51,15 @@ html, header, body {
 
 /* Body Styling */
 body {
-    background: rgb(90, 90, 90);
+    background: rgb(85, 85, 85);
 }
 
 .content {
     padding: 0 30px;
+}
+
+.bodyText {
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
 }
