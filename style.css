@@ -1,11 +1,16 @@
 :root {
-    font-family: sans-serif;
+    font-family: monospace;
 }
 
 /* Document Margins */
 html, header, body {
     margin: 0;
     padding: 0 0;
+    background: #f5f5f5;
+}
+
+body {
+    position: relative;
 }
 
 /* =======
@@ -14,6 +19,7 @@ html, header, body {
 
 .nav-container {
     background: #84AFE6;
+    background: #2b2b2b;
 }
 
 .nav-flex{
@@ -29,13 +35,11 @@ html, header, body {
 
 .title {
     color: white;
-    font-family: sans-serif;
     font-size: 24px;
 }
 
 .navtext {
     color: white;
-    font-family: sans-serif;
 }
 
 .right {
@@ -47,15 +51,16 @@ html, header, body {
 }
 
 #addButton {
-    padding: 10px 15px;
-    background: white;
-    color: black;
-    font-size: 16px;
+    font-family: monospace;
+    padding: 10px 10px;
+    background: green;
+    color: white;
+    font-size: 14px;
     border: none;
     border-radius: 6px;
     transition: all 0.5s;
     transition-timing-function: ease-in-out;
-    border: 1px solid white;
+    border: 1px solid green;
 }
 
 #addButton:hover {
@@ -71,15 +76,17 @@ html, header, body {
    ==== */
 
 body {
-    background: #B7D3F2;
+    background: #f5f5f5;
 }
 
 .library-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 30px 0;
-    padding: 0 30px;
+    margin: 15px auto;
+    padding: 15px;
+    height: fit-content;
+    max-width: 1000px;
 }
 
 .bodyText {
@@ -95,7 +102,7 @@ body {
 .card {
     color: white;
     height: 18rem;
-    background: #333;
+    background: rgb(65, 65, 65);
     width: 18rem;
     min-width: 280px;
     border-radius: 6px;
@@ -119,7 +126,7 @@ body {
 .card-title {
     font-size: 20px;
     border-radius: 6px 6px 0 0;
-    background: #AFAFDC;
+    background: #2b2b2b;
     height: fit-content;
     overflow: hidden;
     margin: 0;
@@ -134,4 +141,67 @@ body {
     border-radius: 0 0 6px 6px;
     padding: 1rem;
     margin: 0;
+}
+
+/* FORM STYLING */
+
+* {
+    box-sizing: border-box;
+  }
+  
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin: 6px 0;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+
+.form-container {
+    display: block;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    max-width: 600px;
+    min-height: 280px;
+    margin: auto;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
