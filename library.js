@@ -44,7 +44,7 @@ function displayBook() {
 
         // Write pages to card
         const pPages = document.createElement('p');
-        pPages.innerText = library[i].pages;
+        pPages.innerText = library[i].pages + ' pages';
         pPages.classList.add('pages');
         card.appendChild(pPages);
 
