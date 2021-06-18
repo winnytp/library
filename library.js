@@ -56,7 +56,27 @@ function displayBook() {
     }
 }
 
+// Display the form to add book
+function displayForm() {
+    bookForm.setAttribute('class', 'form-container display');
+}
+
+function hideForm() {
+    bookForm.setAttribute('class', 'form-container hidden');
+}
+
+// Query Selectors
+const formBtn = document.getElementById('form-btn');
+const bookForm = document.querySelector('.form-container');
+const cancelBtn = document.getElementById('cancel-btn');
+
+// Event Listeners
+formBtn.addEventListener('click', displayForm);
+cancelBtn.addEventListener('click', hideForm);
+
+// Initialise (for testing purposes)
 addBook('Game of Thrones', 'George R. R. Martin', '1320', 'Read');
+addBook('Diary of a Wimpy Kid', 'Random Author', '150', 'Read');
 addBook('Diary of a Wimpy Kid', 'Random Author', '150', 'Read');
 
 displayBook();
