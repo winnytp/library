@@ -39,10 +39,17 @@ function displayLastBook() {
     // Write remove button to card
     const btnRemove = document.createElement('button');
     btnRemove.innerText = '✖';
-    btnRemove.classList.add('remove');
+    btnRemove.classList.add('remove', 'card-btn');
     btnRemove.setAttribute('data-index', [i]);
     btnRemove.addEventListener('click', removeFromLibrary);
     card.appendChild(btnRemove);
+
+    // Write edit button to card
+    const btnEdit = document.createElement('button');
+    btnEdit.innerText = '📝';
+    btnEdit.classList.add('edit', 'card-btn');
+    btnEdit.addEventListener('click', editBook);
+    card.appendChild(btnEdit);
 
     // Write text to card
     const title = document.createElement('h2');
@@ -128,6 +135,10 @@ function writeInputToLibrary() {
     }
 }
 
+function editBook() {
+    console.log('Edit'); // do this later
+}
+
 // Query Selectors
 const formBtn = document.getElementById('form-btn');
 const bookForm = document.querySelector('.form-container');
@@ -144,7 +155,4 @@ cancelBtn.addEventListener('click', hideForm);
 submitBtn.addEventListener('click', writeInputToLibrary);
 
 // Initialise (for testing purposes)
-/* addBook('0: Book Title', 'Author Name', '1234', 'Read');
-addBook('1: Book Title', 'Author Name', '1234', 'Read');
-addBook('2: Book Title', 'Author Name', '1234', 'Read');
-addBook('3: Book Title', 'Author Name', '1234', 'Read'); */
+addBook('0: Book Title', 'Author Name', '1234', 'Read');
