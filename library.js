@@ -41,6 +41,7 @@ function displayLastBook() {
     btnRemove.innerText = '✖';
     btnRemove.classList.add('remove');
     btnRemove.setAttribute('data-index', [i]);
+    btnRemove.addEventListener('click', removeFromLibrary);
     card.appendChild(btnRemove);
 
     // Write text to card
@@ -70,6 +71,23 @@ function displayLastBook() {
         pRead.classList.add('not-read');
     }
     card.appendChild(pRead);
+}
+
+function removeFromLibrary() {
+    let index = this.getAttribute('data-index');
+    const cardToRemove = document.getElementById(index);
+    console.log(`Removed index ${index} from library (Book: ${library[index].title}).`);
+    cardToRemove.remove(); // Remove card div from HTML DOM
+    library.splice(index, 1); // Remove index entry in library array
+    for (i = Number(index); i < library.length; i++) {
+        let indexToChange = i + 1;
+        let cardToChange = document.getElementById(`${indexToChange}`);
+        let btnToChange = document.querySelector(`button[data-index='${indexToChange}']`);
+
+        // Modify DOM attributes to match their new index in the library
+        cardToChange.setAttribute('id', `${i}`);
+        btnToChange.setAttribute('data-index', `${i}`);
+    }
 }
 
 // Form show and hide
@@ -126,4 +144,7 @@ cancelBtn.addEventListener('click', hideForm);
 submitBtn.addEventListener('click', writeInputToLibrary);
 
 // Initialise (for testing purposes)
-addBook('Book Title', 'Author Name', '1234', 'Read');
+/* addBook('0: Book Title', 'Author Name', '1234', 'Read');
+addBook('1: Book Title', 'Author Name', '1234', 'Read');
+addBook('2: Book Title', 'Author Name', '1234', 'Read');
+addBook('3: Book Title', 'Author Name', '1234', 'Read'); */
