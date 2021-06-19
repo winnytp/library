@@ -21,10 +21,10 @@
             <form>
                 <div class="row">
                     <div class="col-25">
-                        <label for="btitle">Book Title:</label>
+                        <label for="book-title">Book Title:</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="btitle" name="booktitle" placeholder="Book title">
+                        <input type="text" id="book-title" name="book-title" placeholder="Book title">
                     </div>
                 </div>
                 <div class="row">
@@ -48,9 +48,9 @@
                         <label for="read">Status:</label>
                     </div>
                     <div class="col-75">
-                        <select id="read" name="read">
-                        <option value="australia">Not read</option>
-                        <option value="canada">Read</option>
+                        <select id="read-check" name="read">
+                        <option value="not-read">Not read</option>
+                        <option value="read">Read</option>
                         </select>
                     </div>
                 </div>
@@ -68,13 +68,12 @@
 </html>
 <script src='library.js'></script>
 
-<!--
-    HTML code for showing book card (add in the 'library-container' div).
-
-    <div class='card card-flex'>
-        <h2 class='card-title'>Game of Thrones</h2>
-        <p class='author'>George R. R. Martin</p>
-        <p class='pages'>1340 pages</p>
-        <p class='read'>Read</p>
-    </div> 
+<!-- Book cards will go here
+<div class='card card-flex'>
+    <button class='remove'>✖</button>
+    <h2 class='card-title'>Game of Thrones</h2>
+    <p class='author'>George R. R. Martin</p>
+    <p class='pages'>1340 pages</p>
+    <p class='read'>Read</p>
+</div>
 -->
