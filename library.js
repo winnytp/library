@@ -1,6 +1,7 @@
 console.log('Library App');
 
 let library = [];
+let editIndex;
 
 // Book object constructor
 function Book(title, author, pages, read) {
@@ -48,7 +49,8 @@ function displayLastBook() {
     const btnEdit = document.createElement('button');
     btnEdit.innerText = '📝';
     btnEdit.classList.add('edit', 'card-btn');
-    btnEdit.addEventListener('click', editBook);
+    btnEdit.setAttribute('data-index', [i]);
+    btnEdit.addEventListener('click', showEditForm);
     card.appendChild(btnEdit);
 
     // Write text to card
@@ -97,17 +99,17 @@ function removeFromLibrary() {
     }
 }
 
-// Form show and hide
 function displayForm() {
-    bookForm.setAttribute('class', 'form-container display');
+    bookForm.setAttribute('class', 'form-container display fade-in');
 }
 
 function hideForm() {
     bookForm.setAttribute('class', 'form-container hidden');
     clearForm();
+    submitBtn.setAttribute('class', 'display');
+    editSubmitBtn.setAttribute('class', 'hidden');
 }
 
-// Form functionality
 function clearForm() {
     bookInput.value = '';
     authorInput.value = '';
@@ -132,11 +134,55 @@ function writeInputToLibrary() {
         }
         addBook(bookTitle, authorName, pageNum, readText);
         clearForm();
+        hideForm();
     }
 }
 
+function showEditForm() {
+    editIndex = this.getAttribute('data-index');
+    submitBtn.classList.add('hidden');
+    editSubmitBtn.setAttribute('class', 'display');
+    console.log('Attribute: ' + editIndex);
+    bookInput.value = library[editIndex].title;
+    authorInput.value = library[editIndex].author;
+    pagesInput.value = library[editIndex].pages;
+    displayForm();
+}
+
+// Change the text of card and library array to match new values that user inputs
 function editBook() {
-    console.log('Edit'); // do this later
+    // Edit title text
+    let editTitle = document.getElementById(editIndex).querySelector('.card-title');
+    editTitle.innerText = bookInput.value;
+
+    // Edit author text
+    let editAuthor = document.getElementById(editIndex).querySelector('.author');
+    editAuthor.innerHTML = authorInput.value;
+
+    // Edit pages text
+    let editPages = document.getElementById(editIndex).querySelector('.pages');
+    editPages.innerHTML = pagesInput.value;
+
+    // Edit read status
+    let editRead = document.getElementById(editIndex).querySelector('.read');
+    if (readInput.value === 'not-read') {
+        editRead.innerText = 'Not read';
+        editRead.classList.add('not-read');
+        library[editIndex].read = editRead.innerText;
+    } else {
+        editRead.innerText = 'Read';
+        editRead.classList.add('read');
+        library[editIndex].read = editRead.innerText;
+    }
+
+    // Modify the library to reflect new user input
+    library[editIndex].title = bookInput.value;
+    library[editIndex].author = authorInput.value;
+    library[editIndex].pages = pagesInput.value;
+
+    // Reset form
+    hideForm();
+    clearForm();
 }
 
 // Query Selectors
@@ -148,11 +194,13 @@ const authorInput = document.getElementById('author');
 const pagesInput = document.getElementById('pages');
 const readInput = document.getElementById('read-check');
 const submitBtn = document.getElementById('submit-btn');
+const editSubmitBtn = document.getElementById('edit-submit-btn');
 
 // Event Listeners
 formBtn.addEventListener('click', displayForm);
 cancelBtn.addEventListener('click', hideForm);
 submitBtn.addEventListener('click', writeInputToLibrary);
+editSubmitBtn.addEventListener('click', editBook);
 
 // Initialise (for testing purposes)
-addBook('0: Book Title', 'Author Name', '1234', 'Read');
+addBook('Example Book', 'Hover to Remove or Edit', '1', 'Not read');
