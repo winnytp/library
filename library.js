@@ -203,4 +203,4 @@ submitBtn.addEventListener('click', writeInputToLibrary);
 editSubmitBtn.addEventListener('click', editBook);
 
 // Initialise (for testing purposes)
-addBook('Example Book', 'Hover to Remove or Edit', '1', 'Not read');
+addBook('Book Title', 'Author Name', '123', 'Not read');

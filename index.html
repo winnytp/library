@@ -7,14 +7,13 @@
         <link rel='stylesheet' href='style.css'>
     </head>
     <header>
-        <div class='nav-container'>
-            <div class='nav-flex'>
-                <p class='navtext'>About</p>
-                <h1 class='title'>Library</h1>
-                <button id='form-btn'>Add +</button>
-            </div>
+        <div class='header-flex'>
+            <h1 class='center-text'>Library</h1>
+            <p class='center-text'>Keep track of books you've read.</p>
+            <button id='form-btn'>Add +</button>
         </div>
     </header>
+    <hr>
     <body>
         <!-- Form Popup -->
         <div class="form-container hidden">
@@ -64,6 +63,16 @@
         <!-- Book Library -->
         <div class='library-container'>
             <!-- Book cards will go here -->
+            <div class='card card-flex'>
+                <button class='remove card-btn'>✖</button>
+                <h2 class='card-title'>Game of Thrones: A Song of Ice and Fire</h2>
+                <p class='author'>George R. R. Martin</p>
+                <p class='pages'>1340 pages</p>
+                <div class='card-footer'>
+                    <p class='read'>Read</p>
+                    <p class='card-footer-edit'>Edit</p>
+                </div>
+            </div>
         </div>
     </body>
 </html>
@@ -71,8 +80,9 @@
 
 <!-- Book cards will go here
 <div class='card card-flex'>
-    <button class='remove'>✖</button>
+    <button class='remove card-btn'>✖</button>
     <h2 class='card-title'>Game of Thrones</h2>
+    <button class="edit card-btn" data-index="0">📝</button>
     <p class='author'>George R. R. Martin</p>
     <p class='pages'>1340 pages</p>
     <p class='read'>Read</p>
