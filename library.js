@@ -13,13 +13,16 @@ function Book(title, author, pages, read) {
 
 // Adds a book to library array
 function addBook(title, author, pages, read) {
+    if (pages <= 0) {
+        return alert('Sneaky, you can\'t have less than one page.');
+    }
     let book = new Book(title, author, pages, read);
     library.push(book);
-    displayLastBook();
+    displayBook();
 }
 
 // Displays the books on HTML page
-function displayLastBook() {
+function displayBook() {
     const container = document.querySelector('.library-container');
 
     let i = library.length - 1;
@@ -45,13 +48,13 @@ function displayLastBook() {
     btnRemove.addEventListener('click', removeFromLibrary);
     card.appendChild(btnRemove);
 
-    // Write edit button to card
+    /* Write edit button to card
     const btnEdit = document.createElement('button');
     btnEdit.innerText = '📝';
     btnEdit.classList.add('edit', 'card-btn');
     btnEdit.setAttribute('data-index', [i]);
     btnEdit.addEventListener('click', showEditForm);
-    card.appendChild(btnEdit);
+    card.appendChild(btnEdit); */
 
     // Write text to card
     const title = document.createElement('h2');
@@ -61,7 +64,7 @@ function displayLastBook() {
 
     // Write author to card
     const pAuthor = document.createElement('p');
-    pAuthor.innerText = library[i].author;
+    pAuthor.innerText = `by ${library[i].author}`;
     pAuthor.classList.add('author');
     card.appendChild(pAuthor);
 
@@ -71,15 +74,32 @@ function displayLastBook() {
     pPages.classList.add('pages');
     card.appendChild(pPages);
 
+    // Create card footer div
+    const dCardFooter = document.createElement('div');
+    dCardFooter.setAttribute('class', 'card-footer');
+    card.appendChild(dCardFooter);
+
+    // Select newly created card footer
+    const cardFooter = card.querySelector('.card-footer');
+
     // Write read to card
     const pRead = document.createElement('p');
     pRead.innerText = library[i].read;
+    pRead.setAttribute('class', 'read-status');
     if (library[i].read === 'Read') {
         pRead.classList.add('read');
     } else {
         pRead.classList.add('not-read');
     }
-    card.appendChild(pRead);
+    cardFooter.appendChild(pRead);
+
+    // Write edit to card
+    const pEdit = document.createElement('p');
+    pEdit.innerText = 'Edit';
+    pEdit.setAttribute('class', 'card-footer-edit');
+    pEdit.setAttribute('data-index', [i]);
+    pEdit.addEventListener('click', showEditForm);
+    cardFooter.appendChild(pEdit);
 }
 
 function removeFromLibrary() {
@@ -161,17 +181,22 @@ function editBook() {
 
     // Edit pages text
     let editPages = document.getElementById(editIndex).querySelector('.pages');
-    editPages.innerHTML = pagesInput.value;
+    if (Number(pagesInput.value) <= 0) {
+        alert('Sneaky, you can\'t have less than one page.');
+        return;
+    } else {
+        editPages.innerHTML = pagesInput.value;
+    }
 
     // Edit read status
-    let editRead = document.getElementById(editIndex).querySelector('.read');
+    let editRead = document.getElementById(editIndex).querySelector('.read-status');
     if (readInput.value === 'not-read') {
         editRead.innerText = 'Not read';
-        editRead.classList.add('not-read');
+        editRead.setAttribute('class', 'read-status not-read');
         library[editIndex].read = editRead.innerText;
     } else {
         editRead.innerText = 'Read';
-        editRead.classList.add('read');
+        editRead.setAttribute('class', 'read-status read');
         library[editIndex].read = editRead.innerText;
     }
 
@@ -203,4 +228,4 @@ submitBtn.addEventListener('click', writeInputToLibrary);
 editSubmitBtn.addEventListener('click', editBook);
 
 // Initialise (for testing purposes)
-addBook('Book Title', 'Author Name', '123', 'Not read');
+addBook('Book Title', 'Author Name', '123', 'Read');
