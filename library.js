@@ -121,6 +121,7 @@ function removeFromLibrary() {
 
 function displayForm() {
     bookForm.setAttribute('class', 'form-container display fade-in');
+    overlay.setAttribute('class', 'overlay display');
 }
 
 function hideForm() {
@@ -128,6 +129,7 @@ function hideForm() {
     clearForm();
     submitBtn.setAttribute('class', 'display');
     editSubmitBtn.setAttribute('class', 'hidden');
+    overlay.setAttribute('class', 'overlay hidden');
 }
 
 function clearForm() {
@@ -220,6 +222,7 @@ const pagesInput = document.getElementById('pages');
 const readInput = document.getElementById('read-check');
 const submitBtn = document.getElementById('submit-btn');
 const editSubmitBtn = document.getElementById('edit-submit-btn');
+const overlay = document.querySelector('.overlay');
 
 // Event Listeners
 formBtn.addEventListener('click', displayForm);
