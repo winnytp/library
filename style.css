@@ -1,5 +1,6 @@
 * {
     font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 /* Document Margins */
@@ -24,7 +25,7 @@ header {
 
 hr {
     width: 80vw;
-    max-width: 800px;
+    max-width: 650px;
     opacity: 35%;
 }
 
@@ -69,7 +70,7 @@ body {
     margin: 15px auto;
     padding: 15px;
     height: fit-content;
-    max-width: 1000px;
+    max-width: 1450px;
 }
 
 .bodyText {
@@ -201,20 +202,16 @@ body {
     right: 0;
 }
 
-.edit {
+/* .edit {
     border-radius: 6px 0 6px 0;
     background: sandybrown;
     left: 0;
     top: 0;
-}
+} */
 
 /* FORM STYLING */
-
-* {
-    box-sizing: border-box;
-  }
   
-input[type=text], select, textarea {
+input[type=text], input[type=number], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -225,6 +222,7 @@ input[type=text], select, textarea {
 label {
     padding: 12px 12px 12px 0;
     display: inline-block;
+    font-size: 14px;
 }
 
 input[type=button] {
@@ -329,4 +327,28 @@ input[type=button]:hover {
 .center-text {
     text-align: center;
     font-weight: 400;
+}
+
+#form-btn, #submit-btn, #cancel-btn, #edit-submit-btn, .remove {
+    cursor: pointer;
+}
+
+.card-footer p {
+    cursor: pointer;
+}
+
+.small-font {
+    font-size: 14px;
+    color: rgba(0,0,0,0.75);
+}
+
+a {
+    color: rgba(0,0,0,0.5);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    margin: auto;
+    width: 100vw;
 }
