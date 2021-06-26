@@ -22,6 +22,16 @@ function addBook(title, author, pages, read) {
     library.push(book);
     createBookCard(library.length - 1);
     updateLocalStorage();
+    checkEmptyLibrary();
+}
+
+function checkEmptyLibrary() {
+    const emptyLibrary = document.getElementById('empty-library');
+    if (library.length) {
+        return emptyLibrary.setAttribute('class', 'hidden');
+    } else {
+        return emptyLibrary.setAttribute('class', 'display');
+    }
 }
 
 // Local storage
@@ -45,6 +55,7 @@ function initialiseLibrary() {
     }
     library = JSON.parse(localStorage.getItem('library'));
     loadSavedBooks();
+    checkEmptyLibrary();
 }
 
 function createBookCard(i) {
@@ -133,6 +144,7 @@ function removeFromLibrary() {
         btnToChange.setAttribute('data-index', `${i}`);
     }
     updateLocalStorage();
+    checkEmptyLibrary();
 }
 
 function displayForm() {
