@@ -3,6 +3,8 @@ console.log('Library App');
 let library = [];
 let editIndex;
 
+initialiseLibrary();
+
 // Book object constructor
 function Book(title, author, pages, read) {
     this.title = title;
@@ -18,15 +20,33 @@ function addBook(title, author, pages, read) {
     }
     let book = new Book(title, author, pages, read);
     library.push(book);
-    displayBook();
+    createBookCard(library.length - 1);
+    updateLocalStorage();
 }
 
-// Displays the books on HTML page
-function displayBook() {
+// Local storage
+function updateLocalStorage() {
+    localStorage.setItem('library', JSON.stringify(library));
+}
+
+function loadSavedBooks() {
+    let localBooksArray = localStorage.getItem('library');
+    localBooksArray = JSON.parse(localBooksArray);
+    console.table(localBooksArray);
+
+    for (let i = 0; i < localBooksArray.length; i ++) {
+        createBookCard(i);
+    }
+}
+
+function initialiseLibrary() {
+    library = JSON.parse(localStorage.getItem('library'));
+    loadSavedBooks();
+}
+
+function createBookCard(i) {
     const container = document.querySelector('.library-container');
-
-    let i = library.length - 1;
-
+    
     // Log what this function is doing (for debug purposes)
     console.log(`Adding ${library[i].title} to page.`);
     console.table(library[i]);
@@ -47,14 +67,6 @@ function displayBook() {
     btnRemove.setAttribute('data-index', [i]);
     btnRemove.addEventListener('click', removeFromLibrary);
     card.appendChild(btnRemove);
-
-    /* Write edit button to card
-    const btnEdit = document.createElement('button');
-    btnEdit.innerText = '📝';
-    btnEdit.classList.add('edit', 'card-btn');
-    btnEdit.setAttribute('data-index', [i]);
-    btnEdit.addEventListener('click', showEditForm);
-    card.appendChild(btnEdit); */
 
     // Write text to card
     const title = document.createElement('h2');
@@ -117,6 +129,7 @@ function removeFromLibrary() {
         cardToChange.setAttribute('id', `${i}`);
         btnToChange.setAttribute('data-index', `${i}`);
     }
+    updateLocalStorage();
 }
 
 function displayForm() {
@@ -205,6 +218,9 @@ function editBook() {
     library[editIndex].author = authorInput.value;
     library[editIndex].pages = pagesInput.value;
 
+    // Update local storage
+    updateLocalStorage();
+
     // Reset form
     hideForm();
     clearForm();
@@ -227,5 +243,7 @@ cancelBtn.addEventListener('click', hideForm);
 submitBtn.addEventListener('click', writeInputToLibrary);
 editSubmitBtn.addEventListener('click', editBook);
 
-// Initialise (for testing purposes)
+/* Initialise (for testing purposes)
 addBook('Book Title', 'Author Name', '123', 'Read');
+addBook('Untitled', 'Anonymous', '1', 'Not Read');
+*/
