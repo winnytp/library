@@ -4,6 +4,7 @@
 ## Features
 1. Display books from your library using a flexible card-based interface.
 2. Edit entries in your library, including book title, author, and number of pages.
+3. Remembers what books you've added on your browser.
 
 ### Book Removal Behaviour:
 If you had books `A`, `B` and `C`, then removed `Book B`:
@@ -13,6 +14,6 @@ If you had books `A`, `B` and `C`, then removed `Book B`:
 
 This keeps the library array and DOM elements in sync.
 
-## Planned to add:
-- Local storage
+### Planned features:
+- Local storage: Added (26 June 2021)
 - Cloud storage
