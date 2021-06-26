@@ -40,6 +40,9 @@ function loadSavedBooks() {
 }
 
 function initialiseLibrary() {
+    if (localStorage.length === 0) {
+        return;
+    }
     library = JSON.parse(localStorage.getItem('library'));
     loadSavedBooks();
 }
