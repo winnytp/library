@@ -5,24 +5,26 @@ let editIndex;
 
 initialiseLibrary();
 
-// Book object constructor
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
-// Adds a book to library array
-function addBook(title, author, pages, read) {
-    if (pages <= 0) {
-        return alert('Sneaky, you can\'t have less than one page.');
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
-    let book = new Book(title, author, pages, read);
-    library.push(book);
-    createBookCard(library.length - 1);
-    updateLocalStorage();
-    checkEmptyLibrary();
+
+    get add() {
+        return this.create();
+    }
+
+    create() {
+        if (this.pages <= 0 || this.title === '') return alert('Please check book details.');
+        let book = new Book(this.title, this.author, this.pages, this.read);
+        library.push(book);
+        createBookCard(library.length - 1);
+        updateLocalStorage();
+        checkEmptyLibrary();
+    }
 }
 
 function checkEmptyLibrary() {
@@ -180,7 +182,7 @@ function writeInputToLibrary() {
         } else {
             readText = 'Read';
         }
-        addBook(bookTitle, authorName, pageNum, readText);
+        new Book(bookTitle, authorName, pageNum, readText).add;
         clearForm();
         hideForm();
     }
@@ -257,8 +259,3 @@ formBtn.addEventListener('click', displayForm);
 cancelBtn.addEventListener('click', hideForm);
 submitBtn.addEventListener('click', writeInputToLibrary);
 editSubmitBtn.addEventListener('click', editBook);
-
-/* Initialise (for testing purposes)
-addBook('Book Title', 'Author Name', '123', 'Read');
-addBook('Untitled', 'Anonymous', '1', 'Not Read');
-*/
